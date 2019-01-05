@@ -5,4 +5,6 @@ router.get('/', (req, res) => {
   res.render('home')
 })
 
+router.use('/user', require('./user-routes'))
+
 module.exports = router

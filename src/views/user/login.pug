@@ -1,0 +1,19 @@
+extends ../shared/layouts/centered
+
+block content
+  h3= title
+  h5 Log In
+
+  form(method="POST", novalidate).needs-validation
+    .form-group
+      input(type="email", name="email", placeholder="Email", required).form-control
+      .invalid-feedback.text-left
+        span Email is required
+    .form-group
+      input(type="password", name="password", placeholder="Password", required).form-control
+      .invalid-feedback.text-left
+        span Password is required
+    button(type="submit").btn.btn-success.btn-block Log In
+
+block scripts
+  script(src="/js/forms.validation.js")
