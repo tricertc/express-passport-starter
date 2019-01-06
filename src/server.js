@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const flash = require('express-flash')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const morgan = require('morgan')
@@ -24,6 +25,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(flash())
 app.use(morgan('dev'))
 app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 },
@@ -34,6 +36,8 @@ app.use(session({
     mongooseConnection: mongoose.connection
   })
 }))
+
+require('./lib/config/auth')(app)
 
 app.use(middleware.default({ title: process.env.TITLE }))
 app.use(middleware.view('home'))

@@ -1,5 +1,9 @@
 ul.nav
-  li.nav-item
-    a(href="/user/login").nav-link Log in
-  li.nav-item
-    a(href="/user/register").nav-link Sign Up
+  if !user
+    li.nav-item
+      a(href="/user/login").nav-link Log in
+    li.nav-item
+      a(href="/user/register").nav-link Sign Up
+  else
+    li.nav-item
+      a(href="/user/logout").nav-link Sign out

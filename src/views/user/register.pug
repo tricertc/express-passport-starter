@@ -4,6 +4,8 @@ block content
   h3= title
   h5 Sign Up
 
+  include ../shared/alerts
+
   form(method="POST", novalidate).needs-validation
     .form-group
       input(type="text", name="name", placeholder="Name", required).form-control

@@ -2,3 +2,6 @@ extends shared/layouts/public
 
 block content
   h3= title
+
+  if user
+    p Welcome, #{ user.email }
