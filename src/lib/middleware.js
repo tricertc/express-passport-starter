@@ -23,7 +23,7 @@ exports.default = (options = {}) => (req, res, next) => {
  *  })
  */
 exports.view = (indexView = 'home') => (req, res, next) => {
-  const view = req.path.substring(1) || indexView
+  const view = (req.path && req.path.substring(1)) || indexView
   res.view = viewData => {
     res.render(view, viewData)
   }
@@ -43,7 +43,7 @@ exports.authenticated = (req, res, next) => {
 /**
  * Restrict route to anonymous users only.
  */
-exports.public = (req, res, next) => {
+exports.anonymous = (req, res, next) => {
   if (req.user) {
     return res.redirect('/')
   }

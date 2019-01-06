@@ -5,7 +5,7 @@ const middleware = require('../middleware')
 const router = express.Router()
 
 router.route('/login')
-  .all(middleware.public)
+  .all(middleware.anonymous)
   .get((req, res) => res.view())
   .post(passport.authenticate('local', {
     successRedirect: '/',
@@ -14,7 +14,7 @@ router.route('/login')
   }))
 
 router.route('/register')
-  .all(middleware.public)
+  .all(middleware.anonymous)
   .get((req, res) => res.view())
   .post(passport.authenticate('local-signup', {
     successRedirect: '/',
