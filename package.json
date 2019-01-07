@@ -7,9 +7,9 @@
     "build": "gulp",
     "build:watch": "gulp watch",
     "start:dev": "nodemon -r dotenv/config",
-    "start:watch": "concurrently \"npm:build:watch\" \"npm:start:dev\"",
-    "test": "mocha -c test/**/*.spec.js",
-    "test:watch": "mocha -c -w test/**/*.spec.js"
+    "start:watch": "npm run build && concurrently \"npm:build:watch\" \"npm:start:dev\"",
+    "test": "mocha -c 'test/**/*.spec.js'",
+    "test:watch": "mocha -c -w 'test/**/*.spec.js'"
   },
   "keywords": [],
   "author": "",

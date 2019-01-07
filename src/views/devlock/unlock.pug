@@ -1,0 +1,7 @@
+extends ../shared/layouts/centered
+
+block content
+  form(method="POST")
+    .form-group
+      input(type="password", name="key", placeholder="Enter passphrase ...").form-control
+    button(type="submit").btn.btn-primary.btn-block Unlock

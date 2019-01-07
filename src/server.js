@@ -37,6 +37,10 @@ app.use(session({
   })
 }))
 
+if (process.env.NODE_ENV === 'staging') {
+  require('./lib/config/devlock')(app)
+}
+
 require('./lib/config/auth')(app)
 
 app.use(middleware.default({ title: process.env.TITLE }))
