@@ -1,4 +1,8 @@
-const DEVLOCK_KEY = process.env.DEVLOCK_KEY || 'letmein'
+const DEVLOCK_KEY = process.env.DEVLOCK_KEY
+
+if (!DEVLOCK_KEY) {
+  throw new Error('Developer unlock key is not defined.')
+}
 
 module.exports = app => {
   app.route('/devlock/unlock')

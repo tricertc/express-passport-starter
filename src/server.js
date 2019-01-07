@@ -37,7 +37,7 @@ app.use(session({
   })
 }))
 
-if (process.env.NODE_ENV === 'staging') {
+if (process.env.DEVLOCK_KEY) {
   require('./lib/config/devlock')(app)
 }
 
