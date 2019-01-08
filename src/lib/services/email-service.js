@@ -23,7 +23,7 @@ function sendHtmlEmail(to, subject, html) {
  * @param {string} token
  */
 function sendConfirmationEmail(req, to, token) {
-  const link = urlHelper.build(req, '/user/email/confirm', { email: to, token })
+  const link = urlHelper.build(req, '/user/confirm', { email: to, token })
 
   const html = `
     <div>

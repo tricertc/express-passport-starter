@@ -40,6 +40,7 @@ passport.use('local-signup',
       }
 
       user.sendConfirmationEmail(req)
+      req.session.welcome = true
 
       done(null, user)
     }

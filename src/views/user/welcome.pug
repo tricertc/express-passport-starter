@@ -1,0 +1,14 @@
+extends ../shared/layouts/centered
+
+block content
+  h3= title
+  h4 Thank You!
+
+  p
+    | We have emailed a verification link to your inbox at #{ email }
+    | Please verify your email to complete your registration.
+
+  p
+    a(href="/user/email/resend") Resend Verification Email
+
+  a(href="/").btn.btn-success.btn-block Continue
