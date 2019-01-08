@@ -47,4 +47,12 @@ User.methods.setPassword = setPassword
 User.methods.verifyPassword = verifyPassword
 User.methods.sendConfirmationEmail = sendConfirmationEmail
 
+/**
+ * Static method to wrap the instance sendConfirmationEmail method.
+ */
+User.statics.sendConfirmationEmail = async function (req, userId) {
+  const user = await this.findById(userId)
+  user.sendConfirmationEmail(req)
+}
+
 module.exports = mongoose.models.User || mongoose.model('User', User)

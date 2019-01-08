@@ -1,0 +1,7 @@
+extends ../../shared/layouts/centered
+
+block content
+  h3= title
+  form(method="POST")
+    input(type="hidden", name="nonce", value=nonce)
+    button(type="submit").btn.btn-primary.btn-block Resend Verification Email

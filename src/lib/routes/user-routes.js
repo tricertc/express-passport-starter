@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const middleware = require('../middleware')
 const User = require('../models/user-model')
+const tokenHelper = require('../helpers/token-helper')
 
 const router = express.Router()
 
@@ -42,6 +43,21 @@ router.get('/confirm', async (req, res) => {
   }
   return res.render('user/confirm/error')
 })
+
+router.route('/confirm/resend')
+  .all(middleware.authenticated, middleware.unconfirmed)
+  .get((req, res) => {
+    const nonce = tokenHelper.generate(8)
+    req.session.nonce = nonce
+    res.view({ nonce })
+  })
+  .post((req, res) => {
+    if (req.session.nonce === req.body.nonce) {
+      User.sendConfirmationEmail(req, req.user.id)
+    }
+    delete req.session.nonce
+    res.render('user/confirm/sent', { email: req.user.email })
+  })
 
 router.get('/confirm/success', (req, res) => res.view({ email: req.user.email }))
 router.get('/confirm/error', (req, res) => res.view())

@@ -49,3 +49,10 @@ exports.anonymous = (req, res, next) => {
   }
   next()
 }
+
+exports.unconfirmed = (req, res, next) => {
+  if (req.user.confirmed) {
+    return res.redirect('/')
+  }
+  next()
+}

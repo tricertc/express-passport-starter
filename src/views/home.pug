@@ -3,5 +3,11 @@ extends shared/layouts/public
 block content
   h3= title
 
+  if !user.confirmed
+    .col-6
+      .alert.alert-warning
+        p Please confirm your account or #[a(href="/user/confirm/resend") resend confirmation email].
+
   if user
     p Welcome, #{ user.email }
+
