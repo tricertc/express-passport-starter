@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const tokenHelper = require('../helpers/token-helper')
+const emailService = require('../services/email-service')
 
 const User = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
@@ -30,7 +32,19 @@ async function verifyPassword(password) {
   return result
 }
 
+/**
+ * Send the user an email to confirm their account.
+ *
+ * @param {Express.Request} req
+ */
+async function sendConfirmationEmail(req) {
+  this.set('tokens.confirmation', tokenHelper.generate())
+  await this.save()
+  emailService.sendConfirmationEmail(req, this.email, this.tokens.get('confirmation'))
+}
+
 User.methods.setPassword = setPassword
 User.methods.verifyPassword = verifyPassword
+User.methods.sendConfirmationEmail = sendConfirmationEmail
 
 module.exports = mongoose.models.User || mongoose.model('User', User)

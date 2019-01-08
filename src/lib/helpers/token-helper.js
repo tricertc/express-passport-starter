@@ -10,4 +10,9 @@ function generate(n = 48) {
   return crypto.randomBytes(48).toString('hex')
 }
 
+// token types
+exports.tokens = {
+  CONFIRMATION: 'confirmation'
+}
+
 exports.generate = generate

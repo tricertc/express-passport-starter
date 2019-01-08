@@ -15,5 +15,11 @@ block content
         span Password is required
     button(type="submit").btn.btn-success.btn-block Log In
 
+  .row.px-1.mt-2
+    .col-6.text-left
+      a(href="#").text-secondary Forgot Password?
+    .col-6.text-right
+      span.text-secondary New User? #[a(href="/user/register") Sign Up]
+
 block scripts
   script(src="/js/forms.validation.js")

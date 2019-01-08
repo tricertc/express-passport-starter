@@ -39,6 +39,8 @@ passport.use('local-signup',
         return done(null, false, err.message)
       }
 
+      user.sendConfirmationEmail(req)
+
       done(null, user)
     }
   ))
